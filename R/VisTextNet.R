@@ -65,6 +65,13 @@ VisTextNet <- function(text_network, alpha = .25, label_degree_cut=0, betweennes
   communities <- cluster_louvain(pruned)
   V(pruned)$modularity <- communities$membership
   
+  # output communities/classes
+  dfname <- deparse(substitute(communities))
+  pos <- 1
+  envir = as.environment(pos)
+  #assign("trellis.par.theme", trellis.par.get(), envir = envir)
+  assign(dfname, data.frame(communities), envir = envir)
+  
   #calculate betweenness for sizing nodes
   size <- 3
   if(betweenness){
