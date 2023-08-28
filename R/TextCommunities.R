@@ -60,7 +60,7 @@ TextCommunities<-function(text_network, alpha=.25){
   
   
   library(igraph)
-  communities<-cluster_louvain(text_network)
+  communities<-cluster_louvain(pruned)
   results<-data.frame(cbind(communities$names, communities$membership),
                       stringsAsFactors = FALSE)
   names(results)<-c("group","modularity_class")
